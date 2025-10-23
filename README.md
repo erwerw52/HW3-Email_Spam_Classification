@@ -73,12 +73,12 @@ streamlit run app.py
 
 在開始使用前，請確認：
 
-- [ ] Python 3.8+ 已安裝
-- [ ] 虛擬環境已創建並激活
-- [ ] 所有依賴已通過 `pip install -r requirements.txt` 安裝
-- [ ] 數據文件 `dataset/sms_spam_no_header.csv` 存在
-- [ ] 應用已通過 `streamlit run app.py` 啟動
-- [ ] 瀏覽器已打開 `http://localhost:8501`
+- [x] Python 3.8+ 已安裝
+- [x] 虛擬環境已創建並激活
+- [x] 所有依賴已通過 `pip install -r requirements.txt` 安裝
+- [x] 數據文件 `dataset/sms_spam_no_header.csv` 存在
+- [x] 應用已通過 `streamlit run app.py` 啟動
+- [x] 瀏覽器已打開 `http://localhost:8501`
 
 ### 首次使用建議 💡
 
