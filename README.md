@@ -236,6 +236,7 @@ spam-email-classifier/
 2. **連接 Streamlit Cloud**：訪問 [share.streamlit.io](https://share.streamlit.io)
 3. **配置部署**：選擇倉庫和分支
 4. **啟動應用**：等待部署完成
+5. **訪問部屬**：訪問 [w5114056034-hw3-emailspamclassification.streamlit.app](https://w5114056034-hw3-emailspamclassification.streamlit.app/)
 
 ### 部署注意事項
 - 確保 `requirements.txt` 包含所有依賴
@@ -321,7 +322,7 @@ A:
 4. 推送到分支
 5. 創建 Pull Request
 
-## 使用流程(LIVE_INFERENCE_FEATURES.md)
+## 使用流程(./LIVE_INFERENCE_FEATURES.md)
 
 ## 📄 許可證
 
