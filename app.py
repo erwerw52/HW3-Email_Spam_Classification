@@ -51,6 +51,48 @@ def main():
         color: #FF6B6B;
         margin-bottom: 1rem;
     }
+    
+    /* 注意：不要隱藏所有 selectbox，只隱藏特定的導航相關元素 */
+    
+    /* 隱藏頁面頂部的導航欄 */
+    .css-1d391kg, .css-1rs6os, .css-17ziqus {
+        display: none !important;
+    }
+    
+    /* 隱藏多頁面應用的頁面選擇器 */
+    .css-1kyxreq {
+        display: none !important;
+    }
+    
+    /* 隱藏 Streamlit 的頁面導航 */
+    section[data-testid="stSidebar"] > div:first-child > div:first-child {
+        display: none !important;
+    }
+    
+    /* 隱藏側邊欄頂部的應用信息 */
+    .css-1lcbmhc, .css-1outpf7 {
+        display: none !important;
+    }
+    
+    /* 更精確地隱藏多頁面導航區域 */
+    .stApp > header {
+        display: none !important;
+    }
+    
+    /* 隱藏側邊欄中的頁面導航按鈕 */
+    .css-1544g2n, .css-1v0mbdj {
+        display: none !important;
+    }
+    
+    /* 隱藏 Streamlit 默認的頁面標題區域 */
+    .css-18e3th9, .css-1d391kg {
+        display: none !important;
+    }
+    
+    /* 隱藏多頁面應用的導航欄 */
+    div[data-testid="stSidebarNav"] {
+        display: none !important;
+    }
     </style>
     """, unsafe_allow_html=True)
     
@@ -75,23 +117,25 @@ def main():
     # 模型配置區域
     st.sidebar.markdown("### 模型設置")
     
+    # 快速訓練模式（移到外面）
+    fast_mode = st.sidebar.checkbox(
+        "快速訓練模式",
+        value=True,
+        help="啟用快速模式可大幅減少訓練時間，但可能略微降低準確率"
+    )
+    
+    # 數據集大小選項（移到外面）
+    dataset_options = ["完整數據集", "50% 數據集", "25% 數據集", "10% 數據集"]
+    dataset_size = st.sidebar.selectbox(
+        "數據集大小",
+        options=dataset_options,
+        index=1 if fast_mode else 0,
+        help="選擇用於訓練的數據集大小，較小的數據集訓練更快",
+        key="dataset_size_selector"
+    )
+    
     # 高級設置
     with st.sidebar.expander("高級設置"):
-        # 快速訓練模式
-        fast_mode = st.checkbox(
-            "快速訓練模式",
-            value=True,
-            help="啟用快速模式可大幅減少訓練時間，但可能略微降低準確率"
-        )
-        
-        # 數據集大小選項
-        dataset_size = st.selectbox(
-            "數據集大小",
-            ["完整數據集", "50% 數據集", "25% 數據集", "10% 數據集"],
-            index=1 if fast_mode else 0,
-            help="選擇用於訓練的數據集大小，較小的數據集訓練更快"
-        )
-        
         # 分類閾值
         threshold = st.slider(
             "分類閾值",
@@ -118,6 +162,12 @@ def main():
             value=True,
             help="在預處理時是否移除英文停用詞"
         )
+        
+        # 調試信息（可選）
+        if st.checkbox("顯示調試信息", value=False, key="debug_info"):
+            st.write(f"選擇的數據集大小: {dataset_size}")
+            st.write(f"快速模式: {fast_mode}")
+            st.write(f"可用選項: {dataset_options}")
     
     # 根據快速模式設置初始化分類器
     if st.session_state.classifier is None or st.session_state.fast_mode != fast_mode:
